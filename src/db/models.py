@@ -20,10 +20,10 @@ class User(Model):
 
 class Todo(Model):
     title: str = fields.CharField(max_length=20)
-    content: str = fields.TextField()
-    user = fields.ForeignKeyField('models.User', 'todos')
+    content: str | None = fields.TextField(default=None, null=True)
+    user: User = fields.ForeignKeyField('models.User', 'todos')
+    due: datetime | None = fields.DatetimeField(default=None, null=True)
     created: datetime = fields.DatetimeField(auto_now_add=True)
-    due: datetime = fields.DatetimeField(default=None, null=True)
     done: bool = fields.BooleanField(default=False)
     
     class Meta:

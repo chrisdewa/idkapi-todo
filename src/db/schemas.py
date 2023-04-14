@@ -1,3 +1,6 @@
+
+from datetime import datetime
+from pydantic import BaseModel
 from tortoise.contrib.pydantic import pydantic_model_creator, pydantic_queryset_creator
 
 from src.db.models import User, Todo
@@ -14,3 +17,8 @@ TodoOutSet = pydantic_queryset_creator(
     Todo, name='TodoOutSet'
 )
 
+class TodoIn(BaseModel):
+    title: str
+    content: str | None = None
+    due: datetime | None = None
+    done: bool | None = False
