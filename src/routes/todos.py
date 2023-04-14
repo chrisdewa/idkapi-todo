@@ -13,3 +13,4 @@ router = APIRouter(prefix='/todos')
 async def get_user_todos(user: UserDeps) -> TodoOutSet:
     """Returns the user's todos"""
     todos = await user.todos
+    return TodoOutSet.from_orm(todos)
