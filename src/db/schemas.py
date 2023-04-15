@@ -5,8 +5,12 @@ from tortoise.contrib.pydantic import pydantic_model_creator, pydantic_queryset_
 
 from src.db.models import User, Todo
 
+class UserIn(BaseModel):
+    username: str
+    password: str
+
 UserOut = pydantic_model_creator(
-    User, name='UserOut', exclude=('password', 'todos')
+    User, name='UserOut', exclude=('hashed_password', 'todos')
 )
 
 TodoOut = pydantic_model_creator(

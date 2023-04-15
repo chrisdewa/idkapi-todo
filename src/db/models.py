@@ -11,7 +11,7 @@ class User(Model):
     id: str = fields.TextField(pk=True, default=uuid)
     username: str = fields.CharField(max_length=12, unique=True)
     #email: str = fields.TextField(validator=[RegexValidator(r'^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$')])
-    password: str = fields.TextField()
+    hashed_password: str = fields.TextField()
     todos: fields.ReverseRelation['Todo']
     
     class Meta:
